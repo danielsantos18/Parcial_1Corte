@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toCart()">
+        <ion-icon name="cart-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Categoría</ion-label>
+    <ion-select (ionChange)="onCategoryChange($event.detail.value)">
+      <ion-select-option *ngFor="let category of category" [value]="category">
+        {{ category }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="product-list">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <img [src]="product.image" class="product-image" />
+      <div class="product-details">
+        <h2 class="product-name">{{ product.title }}</h2>
+        <p class="product-price">{{ product.price | currency: 'USD' }}</p> 
+        <button (click)="toDetails(product.id)">Ver más</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

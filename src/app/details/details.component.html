@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles del Producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toCart()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="product; else loading">
+    <ion-card>
+      <img [src]="product.image" alt="{{ product.title }}" class="product-image">
+      <ion-card-header>
+        <ion-card-title>{{ product.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Precio:</strong> {{ product.price | currency }}</p>
+        <p><strong>Descripción:</strong> {{ product.description }}</p>
+        <p><strong>Categoría:</strong> {{ product.category }}</p>
+      </ion-card-content>
+    </ion-card>
+    <div class="button-container">
+      <ion-button (click)="addToCart()">Añadir al carrito</ion-button>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <p>Cargando detalles del producto...</p>
+  </ng-template>
+</ion-content>

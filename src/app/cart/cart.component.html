@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito de Compras</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="cartItems.length; else emptyCart">
+    <ion-list>
+      <ion-item *ngFor="let item of cartItems">
+        <ion-thumbnail slot="start">
+          <img [src]="item.image" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.price | currency }} x {{ item.quantity }}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button (click)="removeItem(item)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="pagar()">
+      <ion-icon slot="start" name="cash-outline"></ion-icon>
+      Pagar
+    </ion-button>
+  </ng-container>
+
+  <ng-template #emptyCart>
+    <p>El carrito está vacío.</p>
+  </ng-template>
+</ion-content>
